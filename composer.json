@@ -17,6 +17,7 @@
             "email": "hi@carlos.io"
         }
     ],
+    "bin": ["bin/compify"],
     "autoload": {
         "psr-0": {"CarlosIO": "src/"}
     }
