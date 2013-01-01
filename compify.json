@@ -1,4 +1,17 @@
 {
+    "generic-rules": [
+        "test",
+        "tests",
+        "docs",
+        "doc",
+        ".gitattributes",
+        ".gitignore",
+        ".travis.yml",
+        "CHANGELOG*",
+        "README*",
+        "phpunit.xml.*",
+        "LICENSE*"
+    ],
     "packages-rules": {
         "seld/jsonlint": [
             "tests",

@@ -80,7 +80,9 @@ EOT
     private function crushPackages($config, $path, OutputInterface $output, $verbose)
     {
         $packageRules = $config['packages-rules'];
+        $genericRules = $config['generic-rules'];
         foreach ($packageRules as $package => $rules) {
+            $rules = array_merge($genericRules, $rules);
             foreach ($rules as $rule) {
                 $cmd = 'rm -rf ' . $path . '/' . $package . '/' . $rule;
                 $process = new Process($cmd);
