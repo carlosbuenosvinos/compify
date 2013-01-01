@@ -1,0 +1,13 @@
+{
+    "packages-rules": {
+        "seld/jsonlint": [
+            "tests",
+            ".gitignore",
+            ".travis.yml",
+            "CHANGELOG.mdown",
+            "README.mdown",
+            "phpunit.xml.dist",
+            "LICENSE"
+        ]
+    }
+}
