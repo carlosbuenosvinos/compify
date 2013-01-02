@@ -71,10 +71,11 @@ EOT
         $config = $file->read();
 
         $originalSize = $this->calculateVendorSize($path);
+        $output->writeln('Vendor size before crushing: <info>' . $originalSize . ' bytes</info>');
         $this->crushPackages($config, $path, $output, $verbose);
         $finalSize = $this->calculateVendorSize($path);
-
-        $output->writeln('You have save <info>' . ($originalSize - $finalSize) . ' bytes</info>');
+        $output->writeln('Vendor size after crushing: <info>' . $finalSize . ' bytes</info>');
+        $output->writeln('You have saved <info>' . ($originalSize - $finalSize) . ' bytes</info>!');
     }
 
     private function crushPackages($config, $path, OutputInterface $output, $verbose)
@@ -85,6 +86,7 @@ EOT
             $rules = array_merge($genericRules, $rules);
             foreach ($rules as $rule) {
                 $cmd = 'rm -rf ' . $path . '/' . $package . '/' . $rule;
+                $output->writeln($cmd);
                 $process = new Process($cmd);
                 $process->run();
                 if (!$process->isSuccessful()) {
@@ -96,7 +98,7 @@ EOT
 
     private function calculateVendorSize($path)
     {
-        $cmd = 'du -h -s ' . $path;
+        $cmd = 'du -s ' . $path;
         $process = new Process($cmd);
         $process->run();
         if (!$process->isSuccessful()) {

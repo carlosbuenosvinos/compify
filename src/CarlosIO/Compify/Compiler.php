@@ -74,6 +74,7 @@ class Compiler
 
         $phar->compressFiles(\Phar::GZ);
 
+        $this->addFile($phar, new \SplFileInfo(__DIR__.'/../../../compify.json'), false);
         $this->addFile($phar, new \SplFileInfo(__DIR__.'/../../../LICENSE'), false);
 
         unset($phar);
@@ -140,13 +141,12 @@ class Compiler
 #!/usr/bin/env php
 <?php
 /*
- * This file is part of Satis.
+ * This file is part of Compify.
  *
- * (c) Jordi Boggiano <j.boggiano@seld.be>
- *     Nils Adermann <naderman@naderman.de>
+ * (c) Carlos Buenosvinos <hi@carlos.io>
  *
- * For the full copyright and license information, please view
- * the license that is located at the bottom of this file.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 Phar::mapPhar('compify.phar');
