@@ -1,9 +1,10 @@
 <?php
 
 /*
- * This file is part of Compify.
+ * This file is part of Satis.
  *
  * (c) Carlos Buenosvinos <hi@carlos.io>
+ *     Nils Adermann <naderman@naderman.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,25 +17,24 @@ use Symfony\Component\Finder\Finder;
 /**
  * The Compiler class compiles compify into a phar
  *
+ * @author Fabien Potencier <fabien@symfony.com>
  * @author Carlos Buenosvinos <hi@carlos.io>
  */
 class Compiler
 {
-    const COMPILE_FILE_NAME = 'compify.phar';
-
     /**
-     * Compiles satis into a single phar file
+     * Compiles compify into a single phar file
      *
      * @throws \RuntimeException
      * @param  string            $pharFile The full path to the file to create
      */
-    public function compile($pharFile = self::COMPILE_FILE_NAME)
+    public function compile($pharFile = 'compify.phar')
     {
         if (file_exists($pharFile)) {
             unlink($pharFile);
         }
 
-        $phar = new \Phar($pharFile, 0, self::COMPILE_FILE_NAME);
+        $phar = new \Phar($pharFile, 0, 'compify.phar');
         $phar->setSignatureAlgorithm(\Phar::SHA1);
 
         $phar->startBuffering();
@@ -74,7 +74,6 @@ class Compiler
 
         $phar->compressFiles(\Phar::GZ);
 
-        $this->addFile($phar, new \SplFileInfo(__DIR__.'/../../../compify.json'), false);
         $this->addFile($phar, new \SplFileInfo(__DIR__.'/../../../LICENSE'), false);
 
         unset($phar);
@@ -141,12 +140,13 @@ class Compiler
 #!/usr/bin/env php
 <?php
 /*
- * This file is part of Compify.
+ * This file is part of Satis.
  *
  * (c) Carlos Buenosvinos <hi@carlos.io>
+ *     Nils Adermann <naderman@naderman.de>
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view
+ * the license that is located at the bottom of this file.
  */
 
 Phar::mapPhar('compify.phar');

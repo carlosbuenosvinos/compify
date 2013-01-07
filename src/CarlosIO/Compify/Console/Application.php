@@ -3,7 +3,7 @@
 /*
  * This file is part of Satis.
  *
- * (c) Jordi Boggiano <j.boggiano@seld.be>
+ * (c) Carlos Buenosvinos <hi@carlos.io>
  *     Nils Adermann <naderman@naderman.de>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,12 +18,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Composer\IO\ConsoleIO;
 use Composer\Factory;
 use Composer\Util\ErrorHandler;
+use Composer\Json\JsonFile;
+use Composer\Repository;
 
 use CarlosIO\Compify\Command;
 use CarlosIO\Compify\Compify;
 
 /**
- * @author Jordi Boggiano <j.boggiano@seld.be>
+ * @author Carlos Buenosvinos <hi@carlos.io>
  */
 class Application extends BaseApplication
 {
@@ -43,6 +45,7 @@ class Application extends BaseApplication
     {
         $this->registerCommands();
         $this->io = new ConsoleIO($input, $output, $this->getHelperSet());
+
         return parent::doRun($input, $output);
     }
 

@@ -1,10 +1,9 @@
 <?php
 
 /*
- * This file is part of Satis.
+ * This file is part of Compify.
  *
- * (c) Jordi Boggiano <j.boggiano@seld.be>
- *     Nils Adermann <naderman@naderman.de>
+ * (c) Carlos Buenosvinos <hi@carlos.io>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,15 +20,12 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
 use Composer\Composer;
-use Composer\Config;
-use Composer\Package\Dumper\ArrayDumper;
 use Composer\Package\AliasPackage;
-use Composer\Package\LinkConstraint\VersionConstraint;
-use Composer\Package\PackageInterface;
+use Composer\Config;
 use Composer\Json\JsonFile;
 
 /**
- * @author Jordi Boggiano <j.boggiano@seld.be>
+ * @author Carlos Buenosvinos <hi@carlos.io>
  */
 class CrushCommand extends Command
 {
@@ -39,8 +35,6 @@ class CrushCommand extends Command
             ->setName('crush')
             ->setDescription('Builds a composer repository out of a json file')
             ->setDefinition(array(
-                new InputArgument('file', InputArgument::OPTIONAL, 'Json file to use', './compify.json'),
-                // new InputArgument('file', InputArgument::OPTIONAL, 'Json file to use', './composer.json'),
                 new InputArgument('vendor-path', InputArgument::OPTIONAL, 'Composer vendor path', './vendor')
         ))
             ->setHelp(<<<EOT
@@ -62,30 +56,32 @@ EOT
         $verbose = $input->getOption('verbose');
         $path = $input->getArgument('vendor-path');
 
-        // Check compify.json file
-        $file = new JsonFile($input->getArgument('file'));
-        if (!$file->exists()) {
-            $output->writeln('<error>File compify.json not found</error>');
-            return 1;
-        }
-        $config = $file->read();
-
+        $composer = $this->getApplication()->getComposer();
+        $output->writeln('<info>Crushing vendors</info> <comment>(by Carlos Buenosvinos)</comment>');
         $originalSize = $this->calculateVendorSize($path);
-        $output->writeln('Vendor size before crushing: <info>' . $originalSize . ' bytes</info>');
-        $this->crushPackages($config, $path, $output, $verbose);
+        $this->crushPackages($composer, $path, $output, $verbose);
         $finalSize = $this->calculateVendorSize($path);
-        $output->writeln('Vendor size after crushing: <info>' . $finalSize . ' bytes</info>');
-        $output->writeln('You have saved <info>' . ($originalSize - $finalSize) . ' bytes</info>!');
+        $output->writeln('Vendor size before crushing: <info>' . $originalSize . '</info>');
+        $output->writeln('Vendor size after crushing: <info>' . $finalSize . '</info>');
     }
 
-    private function crushPackages($config, $path, OutputInterface $output, $verbose)
+    private function crushPackages($composer, $path, OutputInterface $output, $verbose)
     {
+        $config = \CarlosIO\Compify\Compify::$rules;
         $packageRules = $config['packages-rules'];
         $genericRules = $config['generic-rules'];
-        foreach ($packageRules as $package => $rules) {
-            $rules = array_merge($genericRules, $rules);
+
+        $packages = $this->selectPackages($composer, $output, $verbose);
+        foreach ($packages as $package) {
+            $prettyName = $package->getPrettyName();
+
+            $rules = $genericRules;
+            if (isset($packageRules[$prettyName])) {
+                $rules = array_merge($genericRules, $rules);
+            }
+
             foreach ($rules as $rule) {
-                $cmd = 'rm -rf ' . $path . '/' . $package . '/' . $rule;
+                $cmd = 'rm -rf ' . $path . '/' . $prettyName . '/' . $rule;
                 $output->writeln($cmd);
                 $process = new Process($cmd);
                 $process->run();
@@ -98,7 +94,7 @@ EOT
 
     private function calculateVendorSize($path)
     {
-        $cmd = 'du -s ' . $path;
+        $cmd = 'du -sh ' . $path;
         $process = new Process($cmd);
         $process->run();
         if (!$process->isSuccessful()) {
@@ -106,6 +102,22 @@ EOT
         }
 
         $output = explode("\t", $process->getOutput());
-        return (int) $output[0];
+        return $output[0];
+    }
+
+    private function selectPackages(Composer $composer, OutputInterface $output)
+    {
+        $selected = array();
+        foreach ($composer->getRepositoryManager()->getLocalRepositories() as $repository) {
+            foreach ($repository->getPackages() as $package) {
+                // skip aliases
+                if ($package instanceof AliasPackage) {
+                    continue;
+                }
+
+                $selected[] = $package;
+            }
+        }
+        return $selected;
     }
 }

@@ -3,8 +3,7 @@
 /*
  * This file is part of Satis.
  *
- * (c) Nils Adermann <naderman@naderman.de>
- *     Jordi Boggiano <j.boggiano@seld.be>
+ * (c) Carlos Buenosvinos <hi@carlos.io>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
