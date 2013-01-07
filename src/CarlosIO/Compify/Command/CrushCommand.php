@@ -65,7 +65,7 @@ EOT
         $output->writeln('Vendor size after crushing: <info>' . $finalSize . '</info>');
     }
 
-    private function crushPackages($composer, $path, OutputInterface $output, $verbose)
+    private function crushPackages($composer, $path, OutputInterface $output, $verbose = false)
     {
         $config = \CarlosIO\Compify\Compify::$rules;
         $packageRules = $config['packages-rules'];
@@ -82,7 +82,9 @@ EOT
 
             foreach ($rules as $rule) {
                 $cmd = 'rm -rf ' . $path . '/' . $prettyName . '/' . $rule;
-                $output->writeln($cmd);
+                if ($verbose) {
+                    $output->writeln($cmd);
+                }
                 $process = new Process($cmd);
                 $process->run();
                 if (!$process->isSuccessful()) {
