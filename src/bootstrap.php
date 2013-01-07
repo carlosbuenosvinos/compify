@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Satis.
+ * This file is part of Compify.
  *
  * (c) Carlos Buenosvinos <hi@carlos.io>
  *

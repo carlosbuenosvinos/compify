@@ -1,7 +1,7 @@
 {
     "name": "carlosio/compify",
     "type": "library",
-    "description": "Including the tests and other useless information like .travis.yml in distributed packages is not a good idea. \"Compify\" tries to remove everything, in order to save bandwidth and disk usage, but the necessary code for the package work in your app or library.",
+    "description": "Including the tests and other useless information like .travis.yml in distributed packages is not a good idea. \"Compify\" tries to remove everything, in order to save bandwidth and disk usage, but the necessary code for the package to work in your app or library.",
     "keywords": ["composer", "bandwidth"],
     "homepage": "http://github.com/carlosbuenosvinos/compify.git",
     "license": "MIT",

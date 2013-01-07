@@ -1,10 +1,9 @@
 <?php
 
 /*
- * This file is part of Satis.
+ * This file is part of Compify.
  *
  * (c) Carlos Buenosvinos <hi@carlos.io>
- *     Nils Adermann <naderman@naderman.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -45,7 +44,6 @@ class Application extends BaseApplication
     {
         $this->registerCommands();
         $this->io = new ConsoleIO($input, $output, $this->getHelperSet());
-
         return parent::doRun($input, $output);
     }
 

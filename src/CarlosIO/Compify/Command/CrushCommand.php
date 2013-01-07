@@ -33,7 +33,7 @@ class CrushCommand extends Command
     {
         $this
             ->setName('crush')
-            ->setDescription('Builds a composer repository out of a json file')
+            ->setDescription('Removes unnecesary files for each composer dependency')
             ->setDefinition(array(
                 new InputArgument('vendor-path', InputArgument::OPTIONAL, 'Composer vendor path', './vendor')
         ))
@@ -104,10 +104,11 @@ EOT
         }
 
         $output = explode("\t", $process->getOutput());
-        return $output[0];
+        return trim($output[0]);
     }
 
-    private function selectPackages(Composer $composer, OutputInterface $output)
+
+    private function selectPackages(Composer $composer)
     {
         $selected = array();
         foreach ($composer->getRepositoryManager()->getLocalRepositories() as $repository) {
