@@ -1,6 +1,12 @@
 compify
 =======
 
-.gitignore compify.phar
+Crushing vendor
 
-php compify.phar minify --dry-run
+php bin/compify crush
+
+Building
+
+php bin/compile
+
+
