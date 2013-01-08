@@ -5,7 +5,7 @@ Compify is a tool to save disk usage and bandwith in your composer vendor folder
 
 Maybe you haven't noticed, but if you take a look to your vendor folder after doing
 a ```php composer.phar install``` there are so much useless information like tests,
-```.travis.yml``` like fails that you just don't need in production.
+```.travis.yml``` like files that you just don't need in production.
 
 Consider also packages installed from source (using ```git clone``` or ```svn checkout```, not
 downloading a zip or methods base), they include folders like ```.git``` or ```.svn``` and, believe me,
