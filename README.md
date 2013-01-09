@@ -20,7 +20,7 @@ from a deployer machine. So, using compify you can save bandwith or time when de
 Download phar distribution from github within your root folder of your application (same level as composer.phar).
 
 ```php
-wget https://github.com/carlosbuenosvinos/compify/raw/master/compify.phar
+curl -O https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
 ```
 
 ## Usage
