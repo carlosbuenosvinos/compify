@@ -92,6 +92,21 @@ EOT
                 }
             }
         }
+
+        // Cleaning .git and .svn
+        $cleanCommands = array();
+        $cleanCommands[] = 'for i in `find $path -name \'.git\'`; do rm -rf \$i; done';
+        $cleanCommands[] = 'for i in `find $path -name \'.svn\'`; do rm -rf \$i; done';
+        foreach ($cleanCommands as $cmd) {
+            if ($verbose) {
+                $output->writeln($cmd);
+            }
+            $process = new Process($cmd);
+            $process->run();
+            if (!$process->isSuccessful()) {
+                throw new \RuntimeException($process->getErrorOutput());
+            }
+        }
     }
 
     private function calculateVendorSize($path)

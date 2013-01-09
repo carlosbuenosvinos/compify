@@ -79,12 +79,31 @@ You can contribute adding new package specific rules or any code update obsvious
 
 ## Example
 
+Let's assummed a small project with following composer.json
+
+```
+    ...
+    "require": {
+        "twig/twig": ">=1.8,<2.0-dev",
+        "symfony/twig-bridge": "2.1.*",
+        "swiftmailer/swiftmailer": "4.3.x-dev",
+        "symfony/console": "2.1.*",
+        "doctrine/dbal": "2.3.*",
+        "silex/silex": "1.0.*",
+        "guzzle/guzzle": "3.0.*"
+    },
+    ...
+```
+
+
 ```
 $ php compify.phar crush
 Crushing vendors (by Carlos Buenosvinos)
-Vendor size before crushing: 150M
-Vendor size after crushing: 96M
+Vendor size before crushing: 73M
+Vendor size after crushing: 18M
 ```
+
+Do you need anything more arguments?
 
 ## More Information
 
