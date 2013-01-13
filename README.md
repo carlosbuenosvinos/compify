@@ -1,5 +1,5 @@
-Compify, a PHP tool to save composer disk usage and bandwith
-============================================================
+Compify, save Composer disk and bandwith
+========================================
 
 Compify is a tool to save disk usage and bandwith in your composer vendor folder.
 
@@ -17,28 +17,25 @@ from a deployer machine. So, using compify you can save bandwith or time when de
 
 ## Installation
 
-Download phar distribution from github within your root folder of your application (same level as composer.phar).
+Installing Compify is as easy as it can get. Download the [`compify.phar`][1]
+file and you're done! (or download it from the command line)
 
-```php
-curl -O https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
-```
+    curl -O https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
 
 ## Usage
 
-```
-php compify.phar crush --help
-Usage:
- crush [vendor-path]
-
-Arguments:
- vendor-path  Composer vendor path (default: "./vendor")
-
-Help:
- The crush command removes all the
- unnecessary files for each composer
- package in order to save disk usage
- and bandwidth.
-```
+    php compify.phar crush --help
+    Usage:
+     crush [vendor-path]
+    
+    Arguments:
+     vendor-path  Composer vendor path (default: "./vendor")
+    
+    Help:
+     The crush command removes all the
+     unnecessary files for each composer
+     package in order to save disk usage
+     and bandwidth.
 
 ## How does it work
 
@@ -47,7 +44,6 @@ and removes typical unnecessary files and folders (what we call generic rules)
 for that package. Also, we have identified specific rules for specific packages
 that will also merge with the generic rules.
 
-```
     public static $rules = array(
         'generic-rules' => array(
             '.git',
@@ -73,15 +69,13 @@ that will also merge with the generic rules.
             )
         )
     );
-```
 
-You can contribute adding new package specific rules or any code update obsviously :).
+You can contribute adding new package specific rules or any code update obsviously.
 
 ## Example
 
 Let's assummed a small project with following composer.json
 
-```
     ...
     "require": {
         "twig/twig": ">=1.8,<2.0-dev",
@@ -93,17 +87,13 @@ Let's assummed a small project with following composer.json
         "guzzle/guzzle": "3.0.*"
     },
     ...
-```
 
+    $ php compify.phar crush
+    Crushing vendors (by Carlos Buenosvinos)
+    Vendor size before crushing: 73M
+    Vendor size after crushing: 18M
 
-```
-$ php compify.phar crush
-Crushing vendors (by Carlos Buenosvinos)
-Vendor size before crushing: 73M
-Vendor size after crushing: 18M
-```
-
-Do you need anything more arguments?
+Do you need more arguments?
 
 ## More Information
 
@@ -112,3 +102,5 @@ For any issue use PR github system, for other info, send me an email to hi@carlo
 ## License
 
 Compify is licensed under the MIT license.
+
+[1]: https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
