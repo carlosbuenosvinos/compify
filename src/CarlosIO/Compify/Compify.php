@@ -34,12 +34,24 @@ class Compify
             'CHANGELOG*',
             'CREDITS*',
             'README*',
+            'readme.md',
             'phpunit.xml.*',
             'LICENSE*',
             'CONTRIBUT*',
-            'UPGRADE*'
+            'UPGRADE*',
+            'TODO',
+            'VERSION'
         ),
         'packages-rules' => array(
+            'symfony/assetic-bundle' => array(
+                'src/Symfony/Bundle/AsseticBundle/Tests',
+            ),
+            'symfony/monolog-bundle' => array(
+                'src/Symfony/Bundle/MonologBundle/Tests',
+            ),
+            'symfony/swiftmailer-bundle' => array(
+                'src/Symfony/Bundle/SwiftmailerBundle/Tests',
+            ),
             'symfony/symfony' => array(
                 'src/Symfony/Bridge/Doctrine/Tests',
                 'src/Symfony/Bridge/Monolog/Tests',
@@ -76,16 +88,39 @@ class Compify
                 'src/Symfony/Component/Validator/Tests',
                 'src/Symfony/Component/Yaml/Tests'
             ),
+            'mockery/mockery' => array(
+                'examples',
+                'package.xml'
+            ),
+            'predis/predis' => array(
+                'bin',
+                'examples',
+                'package.ini',
+                'FAQ*'
+            ),
+            'silex/silex' => array(
+                'bin'
+            ),
+            'swiftmailer/swiftmailer' => array(
+                'notes',
+                'test-suite',
+                'build.xml',
+                'CHANGES',
+                'create_pear_package.php',
+                'package.xml.tpl'
+            ),
             'twig/twig' => array(
+                'bin',
+                'ext',
                 '.editorconfig',
                 'AUTHORS',
-                'ext'
+                'package.xml.tpl'
             ),
             'videlalvaro/php-amqplib' => array(
                 'benchmark',
-                'demo',
-                'ext'
-            ),
+                'bin',
+                'demo'
+            )
         )
     );
 }
