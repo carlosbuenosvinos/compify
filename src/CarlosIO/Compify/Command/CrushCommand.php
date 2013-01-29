@@ -74,10 +74,13 @@ EOT
         $packages = $this->selectPackages($composer, $output, $verbose);
         foreach ($packages as $package) {
             $prettyName = $package->getPrettyName();
+            if ($verbose) {
+                $output->writeln('<comment>Processing package ' . $prettyName . '</comment>');
+            }
 
             $rules = $genericRules;
             if (isset($packageRules[$prettyName])) {
-                $rules = array_merge($genericRules, $rules);
+                $rules = array_merge($rules, $packageRules[$prettyName]);
             }
 
             foreach ($rules as $rule) {
@@ -99,7 +102,7 @@ EOT
         $cleanCommands[] = 'for i in `find $path -name \'.svn\'`; do rm -rf \$i; done';
         foreach ($cleanCommands as $cmd) {
             if ($verbose) {
-                $output->writeln($cmd);
+                $output->writeln('<comment>' . $cmd . '</comment>');
             }
             $process = new Process($cmd);
             $process->run();
