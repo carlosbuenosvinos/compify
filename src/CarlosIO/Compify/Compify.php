@@ -44,7 +44,7 @@ class Compify
                 'src/Symfony/Bridge/Doctrine/Tests',
                 'src/Symfony/Bridge/Monolog/Tests',
                 'src/Symfony/Bridge/Propel1/Tests',
-                'src/Symfony/Bridge/Swiftmailer/Tests'
+                'src/Symfony/Bridge/Swiftmailer/Tests',
                 'src/Symfony/Bridge/Twig/Tests',
 
                 'src/Symfony/Bundle/FrameworkBundle/Tests',
