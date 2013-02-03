@@ -15,22 +15,56 @@ In most of the cases, you will be deploying to production and storing different 
 of your application, installing dependencies directly from your servers or rsyncing
 from a deployer machine. So, using compify you can save bandwith or time when deploying.
 
-## Installation
+Installation
+------------
 
-Installing Compify is as easy as it can get. Download the [`compify.phar`][1]
-file and you're done! (or download it from the command line)
+### Locally
 
-    curl -O https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
+Download the
+[`compify.phar`](https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar) file and
+store it somewhere on your computer.
+
+### Globally
+
+You can run these commands to easily acces `compify` from anywhere on your system:
+
+    $ sudo wget https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar -O /usr/local/bin/compify
+
+or with curl:
+
+    $ sudo curl https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar -o /usr/local/bin/compify
+
+then:
+
+    $ sudo chmod a+x /usr/local/bin/compify
+
+Then, just run `compify` in order to run compify
+
+Update
+------
+
+### Locally
+
+The `self-update` command tries to update compify itself:
+
+    $ php compify.phar self-update
+
+### Globally
+
+You can update compify through this command:
+
+    $ sudo compify self-update
+
 
 ## Usage
 
     php compify.phar crush --help
     Usage:
      crush [vendor-path]
-    
+
     Arguments:
      vendor-path  Composer vendor path (default: "./vendor")
-    
+
     Help:
      The crush command removes all the
      unnecessary files for each composer
@@ -102,5 +136,3 @@ For any issue use PR github system, for other info, send me an email to hi@carlo
 ## License
 
 Compify is licensed under the MIT license.
-
-[1]: https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar
