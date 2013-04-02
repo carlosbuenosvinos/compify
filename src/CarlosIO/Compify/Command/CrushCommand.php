@@ -53,6 +53,8 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        set_time_limit(0);
+
         $verbose = $input->getOption('verbose');
         $path = $input->getArgument('vendor-path');
 
@@ -89,6 +91,7 @@ EOT
                     $output->writeln($cmd);
                 }
                 $process = new Process($cmd);
+                $process->setTimeout(600);
                 $process->run();
                 if (!$process->isSuccessful()) {
                     throw new \RuntimeException($process->getErrorOutput());
@@ -105,6 +108,7 @@ EOT
                 $output->writeln('<comment>' . $cmd . '</comment>');
             }
             $process = new Process($cmd);
+            $process->setTimeout(600);
             $process->run();
             if (!$process->isSuccessful()) {
                 throw new \RuntimeException($process->getErrorOutput());
