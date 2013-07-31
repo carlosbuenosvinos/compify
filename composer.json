@@ -9,7 +9,7 @@
         "symfony/process": ">=2.1,<3.0",
         "symfony/finder": ">=2.1,<3.0",
         "symfony/console": ">=2.1,<3.0",
-        "composer/composer": "1.0.*@dev"
+        "composer/composer": "dev-master"
     },
     "authors": [
         {
