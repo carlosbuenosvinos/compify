@@ -131,7 +131,7 @@ Do you need more arguments?
 
 ## More Information
 
-For any issue use PR github system, for other info, send me an email to hi@carlos.io
+For any issue use PR github system, for other info, send me an email to carlos.buenosvinos@gmail.com
 
 ## License
 
