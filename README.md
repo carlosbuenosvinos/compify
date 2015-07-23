@@ -28,15 +28,17 @@ store it somewhere on your computer.
 
 You can run these commands to easily acces `compify` from anywhere on your system:
 
-    $ sudo wget https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar -O /usr/local/bin/compify
-
-or with curl:
-
-    $ sudo curl https://raw.github.com/carlosbuenosvinos/compify/master/compify.phar -o /usr/local/bin/compify
+    $ sudo https://github.com/carlosbuenosvinos/compify/raw/master/compify.phar -O /usr/local/bin/compify
 
 then:
 
     $ sudo chmod a+x /usr/local/bin/compify
+
+and:
+
+    $ sudo vi /etc/php/php.ini
+    # search for "basedir"
+    # add ":/usr/local/bin" at the end and save
 
 Then, just run `compify` in order to run compify
 
