@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+/**
+ * @author stev leibelt <artodeto@bazzline.net>
+ * @since 2015-07-28
+ */
+
+$nameForOutput      = 'compify.phar';
+$pathForBuild       = __DIR__ . '/../..';
+$pathForOutput      = __DIR__ . '/..';
+$pathToSource       = __DIR__ . '/..';
+
+$pathNameForBuild   = $pathForBuild . '/' . $nameForOutput;
+$pathNameForOutput  = $pathForOutput . '/' . $nameForOutput;
+
+try {
+    if (file_exists($pathNameForBuild)) {
+        unlink($pathNameForBuild);
+    }
+    if (file_exists($pathNameForOutput)) {
+        unlink($pathNameForOutput);
+    }
+
+    $phar = new Phar(
+        $pathNameForBuild,
+        null,
+        $nameForOutput
+    );
+    $phar->buildFromDirectory($pathToSource);
+    //$phar->mapPhar($nameForOutput);
+//echo var_export($stub = $phar->createDefaultStub('compify', 'compify'), true) . PHP_EOL;
+    $stub = '#!/usr/bin/env php
+<?php
+/*
+ * This file is part of Compify.
+ *
+ * (c) Carlos Buenosvinos <hi@carlos.io>
+ *
+ * For the full copyright and license information, please view
+ * the license that is located at the bottom of this file.
+ */
+
+Phar::mapPhar(\'compify.phar\');
+
+require \'phar://compify.phar/compify\';
+
+__HALT_COMPILER(); ?>
+    ';
+    $phar->setStub(
+        $stub
+        //'/bin/compify'
+        //'/vendor/autoload.php'
+        /*
+        $phar->createDefaultStub(
+            'compify',
+            'compify'
+        )
+        */
+    );
+    chmod($pathNameForBuild, 0755);
+    rename($pathNameForBuild, $pathNameForOutput);
+} catch (Exception $exception) {
+    echo 'an error occurred' . PHP_EOL;
+    echo '----------------' . PHP_EOL;
+    echo $exception->getMessage() . PHP_EOL;
+    echo '----------------' . PHP_EOL;
+    echo $exception->getTraceAsString() . PHP_EOL;
+}
