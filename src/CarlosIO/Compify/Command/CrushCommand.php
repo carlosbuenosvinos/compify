@@ -101,8 +101,8 @@ EOT
 
         // Cleaning .git and .svn
         $cleanCommands = array();
-        $cleanCommands[] = 'for i in `find $path -name \'.git\'`; do rm -rf \$i; done';
-        $cleanCommands[] = 'for i in `find $path -name \'.svn\'`; do rm -rf \$i; done';
+        $cleanCommands[] = 'rm `find "' . $path . '" -name \'.git\'` -rf';
+        $cleanCommands[] = 'rm `find "' . $path . '" -name \'.svn\'` -rf';
         foreach ($cleanCommands as $cmd) {
             if ($verbose) {
                 $output->writeln('<comment>' . $cmd . '</comment>');
