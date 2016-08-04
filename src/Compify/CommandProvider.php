@@ -1,6 +1,6 @@
 <?php
 
-namespace CarlosBuenosvinos;
+namespace CarlosBuenosvinos\Compify;
 
 use CarlosBuenosvinos\Compify\Command\CrushCommand;
 use Composer\Plugin\Capability\CommandProvider as CommandProviderCapability;

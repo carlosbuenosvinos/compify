@@ -1,6 +1,6 @@
 <?php
 
-namespace CarlosBuenosvinos;
+namespace CarlosBuenosvinos\Compify;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
@@ -41,7 +41,7 @@ class CompifyPlugin implements PluginInterface, Capable
     public function getCapabilities()
     {
         return array(
-           'Composer\Plugin\Capability\CommandProvider' => 'CarlosBuenosvinos\CommandProvider',
+           'Composer\Plugin\Capability\CommandProvider' => 'CarlosBuenosvinos\Compify\CommandProvider',
            // 'Composer\Plugin\Capability\Validator'       => 'My\Validator',
        );
     }
