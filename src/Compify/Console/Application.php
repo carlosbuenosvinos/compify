@@ -68,6 +68,5 @@ class Application extends BaseApplication
     protected function registerCommands()
     {
         $this->add(new Command\CrushCommand());
-        $this->add(new Command\SelfUpdateCommand());
     }
 }
