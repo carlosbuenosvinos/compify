@@ -25,6 +25,6 @@
         }
     },
     "extra": {
-        "class": "CarlosBuenosvinos\\Plugin"
+        "class": "CarlosBuenosvinos\\CompifyPlugin"
     }
 }

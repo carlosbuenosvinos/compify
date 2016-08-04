@@ -7,12 +7,17 @@ use Composer\IO\IOInterface;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 
-class TemplateInstallerPlugin implements PluginInterface, Capable
+class CompifyPlugin implements PluginInterface, Capable
 {
+    private $io;
+    private $composer;
+
     public function activate(Composer $composer, IOInterface $io)
     {
-        $installer = new TemplateInstaller($io, $composer);
-        $composer->getInstallationManager()->addInstaller($installer);
+        $this->composer = $composer;
+        $this->io = $io;
+        // $installer = new TemplateInstaller($io, $composer);
+        // $composer->getInstallationManager()->addInstaller($installer);
     }
 
     /**
