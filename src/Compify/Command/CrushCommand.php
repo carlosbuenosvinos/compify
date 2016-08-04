@@ -11,23 +11,18 @@
 
 namespace CarlosBuenosvinos\Compify\Command;
 
+use Composer\Command\BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
-
 use Composer\Composer;
 use Composer\Package\AliasPackage;
-use Composer\Config;
-use Composer\Json\JsonFile;
 
 /**
  * @author Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  */
-class CrushCommand extends Command
+class CrushCommand extends BaseCommand
 {
     protected function configure()
     {
