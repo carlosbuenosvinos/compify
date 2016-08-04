@@ -3,13 +3,13 @@
 /*
  * This file is part of Compify.
  *
- * (c) Carlos Buenosvinos <hi@carlos.io>
+ * (c) Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace CarlosIO\Compify\Console;
+namespace CarlosBuenosvinos\Compify\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,14 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Composer\IO\ConsoleIO;
 use Composer\Factory;
 use Composer\Util\ErrorHandler;
-use Composer\Json\JsonFile;
-use Composer\Repository;
 
-use CarlosIO\Compify\Command;
-use CarlosIO\Compify\Compify;
+use CarlosBuenosvinos\Compify\Command;
+use CarlosBuenosvinos\Compify\Compify;
 
 /**
- * @author Carlos Buenosvinos <hi@carlos.io>
+ * @author Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  */
 class Application extends BaseApplication
 {

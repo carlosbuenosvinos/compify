@@ -3,13 +3,13 @@
 /*
  * This file is part of Compify.
  *
- * (c) Carlos Buenosvinos <hi@carlos.io>
+ * (c) Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace CarlosIO\Compify\Command;
+namespace CarlosBuenosvinos\Compify\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,7 +25,7 @@ use Composer\Config;
 use Composer\Json\JsonFile;
 
 /**
- * @author Carlos Buenosvinos <hi@carlos.io>
+ * @author Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  */
 class CrushCommand extends Command
 {
@@ -47,10 +47,6 @@ EOT
         ;
     }
 
-    /**
-     * @param InputInterface  $input  The input instance
-     * @param OutputInterface $output The output instance
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         set_time_limit(0);
@@ -69,7 +65,7 @@ EOT
 
     private function crushPackages($composer, $path, OutputInterface $output, $verbose = false)
     {
-        $config = \CarlosIO\Compify\Compify::$rules;
+        $config = \CarlosBuenosvinos\Compify\Compify::$rules;
         $packageRules = $config['packages-rules'];
         $genericRules = $config['generic-rules'];
 

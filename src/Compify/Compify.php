@@ -3,16 +3,16 @@
 /*
  * This file is part of Compify.
  *
- * (c) Carlos Buenosvinos <hi@carlos.io>
+ * (c) Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace CarlosIO\Compify;
+namespace CarlosBuenosvinos\Compify;
 
 /**
- * @author Carlos Buenosvinos <hi@carlos.io>
+ * @author Carlos Buenosvinos <carlos.buenosvinos@gmail.com>
  */
 class Compify
 {
